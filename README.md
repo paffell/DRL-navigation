@@ -2,11 +2,13 @@
 
 [image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
 
-# Project 1: Navigation
+# DRL for banana collecting
 
 ### Introduction
 
-For this project, you will train an agent to navigate (and collect bananas!) in a large, square world.  
+This project solves the problem of collecting bananas using DRL.
+
+### Problem
 
 ![Trained Agent][image1]
 
@@ -20,25 +22,47 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
 
-### Getting Started
-
-1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
+The environment is encluded (Windows 64-bit version), other versions can be downloaded from:
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
     - Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
     - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
     - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
-    
+
     (_For Windows users_) Check out [this link](https://support.microsoft.com/en-us/help/827218/how-to-determine-whether-a-computer-is-running-a-32-bit-version-or-64) if you need help with determining if your computer is running a 32-bit version or 64-bit version of the Windows operating system.
 
     (_For AWS_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
 
-2. Place the file in the DRLND GitHub repository, in the `p1_navigation/` folder, and unzip (or decompress) the file. 
 
-### Instructions
+### Algorithms
 
-Follow the instructions in `Navigation.ipynb` to get started with training your own agent!  
+##### DQN
 
-### (Optional) Challenge: Learning from Pixels
+##### Double DQN
+
+##### Prioritized replay (TBD)
+
+
+### Structure
+
+This repository consists of
+
+`Navigation.ipynb` - notebook for running the experiments
+
+`model.py` - DL model definition
+
+`dqn_agent.py`, `double_dqn_agent.py`, `dqn_prioritized_replay_agent.py` - Agent class
+
+`checkpoint_best.pth` - already trained agent
+
+`Banana_Windows_x86_64` - problem environment
+
+### How to run
+
+Follow the instructions in `Navigation.ipynb`.
+
+The notebook includes both `Training` and `Simulation` parts.
+
+### (Optional) Challenge: Learning from Pixels (TBD)
 
 After you have successfully completed the project, if you're looking for an additional challenge, you have come to the right place!  In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  A more challenging task would be to learn directly from pixels!
 

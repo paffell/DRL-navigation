@@ -44,8 +44,14 @@ class Agent():
         self.t_step = 0
     
     def step(self, state, action, reward, next_state, done):
+        # compute priorities
+        print(type(action))
+        Q_expected = self.qnetwork_local(torch.from_numpy(np.vstack([state])).float().to(device)).gather(1, torch.from_numpy(np.vstack([action])).long().to(device))
+        Q_targets = self.qnetwork_target(torch.from_numpy(np.vstack([state])).float().to(device)).gather(1, torch.from_numpy(np.vstack([action])).long().to(device))
+        td_error = F.mse_loss(Q_expected, Q_targets)
+        print(td_error)
         # Save experience in replay memory
-        self.memory.add(state, action, reward, next_state, done)
+        self.memory.add(state, action, reward, next_state, done, td_error)
         
         # Learn every UPDATE_EVERY time steps.
         self.t_step = (self.t_step + 1) % UPDATE_EVERY
@@ -87,7 +93,6 @@ class Agent():
 
         # Get max predicted Q values (for next states) from target model
         Q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(1)
-
         # Compute Q targets for current states 
         Q_targets = rewards + (gamma * Q_targets_next * (1 - dones))
 
